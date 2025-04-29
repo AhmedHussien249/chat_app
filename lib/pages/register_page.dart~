@@ -1,0 +1,83 @@
+import 'package:flutter/material.dart';
+
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_field.dart';
+
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
+      // appBar: AppBar(
+      //   title: const Text(
+      //     'Login',
+      //     style: TextStyle(color: Colors.white, fontSize: 30),
+      //   ),
+      //   centerTitle: true,
+      // ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Spacer(
+              flex: 2,
+            ),
+            Image.asset("assets/images/scholar.png"),
+            Text(
+              'Scholar Chat',
+              style: TextStyle(color: Colors.white, fontSize: 30),
+            ),
+            Spacer(
+              flex: 2,
+            ),
+            Row(
+              children: [
+                Text(
+                  'Register',
+                  style: TextStyle(color: Colors.white, fontSize: 30),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            CustomTextField(labelText: 'Email'),
+            SizedBox(
+              height: 10,
+            ),
+            CustomTextField(labelText: 'Password'),
+            SizedBox(
+              height: 20,
+            ),
+            CustomButton(text: 'Register',),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Already have an account?',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                )
+              ],
+            ),
+            Spacer(
+              flex: 3,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
