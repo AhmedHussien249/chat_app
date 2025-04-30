@@ -23,18 +23,18 @@ class LoginPage extends StatelessWidget {
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Spacer(
+            const Spacer(
               flex: 2,
             ),
             Image.asset("assets/images/scholar.png"),
-            Text(
+            const Text(
               'Scholar Chat',
-              style: TextStyle(color: Colors.white, fontSize: 30),
+              style: TextStyle(color: Colors.white, fontSize: 30,fontFamily: 'Pacifico'),
             ),
-            Spacer(
+            const Spacer(
               flex: 2,
             ),
-            Row(
+            const Row(
               children: [
                 Text(
                   'Login',
@@ -42,19 +42,21 @@ class LoginPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             CustomTextField(labelText: 'Email'),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             CustomTextField(labelText: 'Password'),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            CustomButton(text: 'Login',),
-            SizedBox(
+            CustomButton(
+              text: 'Login',
+            ),
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -66,12 +68,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RegisterPage(),
-                      ),
-                    );
+                    Navigator.pushNamed(context, RegisterPage.id);
                   },
                   child: const Text(
                     'Register',
@@ -80,7 +77,7 @@ class LoginPage extends StatelessWidget {
                 )
               ],
             ),
-            Spacer(
+            const Spacer(
               flex: 3,
             )
           ],
