@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
-  CustomTextField({ this.labelText, this.onChanged});
+class CustomFormTextField extends StatelessWidget {
+  CustomFormTextField({ this.labelText, this.onChanged, this.obscureText = false});
 
   String? labelText;
   Function(String)? onChanged;
+  bool obscureText ;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (data){
+        if (data!.isEmpty) {
+          return 'Please enter your $labelText';
+        }
+      },
       onChanged: onChanged,
       onTap: () {
         FocusScope.of(context).unfocus();
       },
+      obscureText: obscureText,
       cursorColor: Colors.white,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
