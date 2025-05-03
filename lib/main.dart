@@ -27,7 +27,7 @@ class ScholarChatApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       routes: {
         LoginPage.id: (context) => const LoginPage(),
-        RegisterPage.id: (context) => RegisterPage(),
+        RegisterPage.id: (context) => const RegisterPage(),
         ChatPage.id: (context) => ChatPage(),
       },
       initialRoute: LoginPage.id,

@@ -7,7 +7,7 @@ import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
 
 class RegisterPage extends StatefulWidget {
-  RegisterPage({super.key});
+  const RegisterPage({super.key});
 
   static String id = 'RegisterPage';
 
@@ -28,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return ModalProgressHUD(
       inAsyncCall: isLoading,
-      progressIndicator: CircularProgressIndicator(),
+      progressIndicator: const CircularProgressIndicator(),
       child: Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         // appBar: AppBar(
@@ -92,12 +92,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   onTap: () async {
                     if (formKey.currentState!.validate()) {
                       isLoading = true;
-                      setState(() {
-
-                      });
+                      setState(() {});
                       try {
                         await registerUser();
-                        Navigator.pushNamed(context, 'ChatPage',arguments: email);
+                        Navigator.pushNamed(context, 'ChatPage',
+                            arguments: email);
                       } on FirebaseAuthException catch (ex) {
                         if (ex.code == 'weak-password') {
                           showSnackBar(context,
@@ -114,9 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         showSnackBar(context, message: 'there was an error');
                       }
                       isLoading = false;
-                      setState(() {
-
-                      });
+                      setState(() {});
                     }
                   },
                   text: 'Register',
@@ -152,7 +149,6 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
-
 
   Future<void> registerUser() async {
     FirebaseAuth.instance;
