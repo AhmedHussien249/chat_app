@@ -1,7 +1,11 @@
+import 'package:chat_app/pages/chat_cubit/chat_cubit.dart';
 import 'package:chat_app/pages/chat_page.dart';
+import 'package:chat_app/pages/login_cubit/login_cubit.dart';
 import 'package:chat_app/pages/login_page.dart';
+import 'package:chat_app/pages/register_cubit/register_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'firebase_options.dart';
 import 'helper/theme.dart';
@@ -21,16 +25,29 @@ class ScholarChatApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Scholar Chat',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      routes: {
-        LoginPage.id: (context) => const LoginPage(),
-        RegisterPage.id: (context) => const RegisterPage(),
-        ChatPage.id: (context) => ChatPage(),
-      },
-      initialRoute: LoginPage.id,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginCubit>(
+          create: (context) => LoginCubit(),
+        ),
+        BlocProvider<RegisterCubit>(
+          create: (context) => RegisterCubit(),
+        ),
+        BlocProvider<ChatCubit>(
+          create: (context) => ChatCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Scholar Chat',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightTheme,
+        routes: {
+          LoginPage.id: (context) => const LoginPage(),
+          RegisterPage.id: (context) => const RegisterPage(),
+          ChatPage.id: (context) => ChatPage(),
+        },
+        initialRoute: LoginPage.id,
+      ),
     );
   }
 }
