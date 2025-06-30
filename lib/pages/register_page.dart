@@ -1,4 +1,4 @@
-import 'package:chat_app/pages/register_cubit/register_cubit.dart';
+import 'package:chat_app/pages/blocs/auth_bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -27,7 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RegisterCubit, RegisterState>(
+    return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is RegisterLoading) {
           isLoading = true;
@@ -104,8 +104,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   CustomButton(
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        BlocProvider.of<RegisterCubit>(context, listen: false)
-                            .registerUser(email: email!, password: password!);
+                        BlocProvider.of<AuthBloc>(context, listen: false)
+                            .add(RegisterEvent(
+                          email: email!,
+                          password: password!,
+                        ));
                       }
                     },
                     text: 'Register',
